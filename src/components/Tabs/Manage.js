@@ -71,19 +71,38 @@ class Manage extends Component {
             
             <View style={styles.body}>
             
-                <View style={styles.body}>
+                <View style={styless.body}>
                   <View style={page_styles.email_container}>
                     <Text>Manage</Text>
-                    <Text style={page_styles.email_text}>{this.state.user.email}</Text>
-                    <Button onPress={ () => navigate('AboutMe') }
-                        title="Learn More"    
-                        color="#841584"
-                        accessibilityLabel="Learn more about this purple button"/>
-                        <TouchableOpacity style={page_styles.buttonContainer}
+                    </View>
+            
+            <TouchableOpacity style={page_styles.buttonContainer2}
             onPress={this.logout}>
-            <Text style={page_styles.buttonText}>LOG OUT</Text>
+            <Text style={page_styles.buttonText}>Register</Text>
             </TouchableOpacity>
-                  </View>
+
+            <TouchableOpacity style={page_styles.buttonContainer2}
+            onPress={this.logout}>
+            <Text style={page_styles.buttonText}>Add Subject</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={page_styles.buttonContainer2}
+            onPress={this.logout}>
+            <Text style={page_styles.buttonText}>Change Subject</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={page_styles.buttonContainer2}
+            onPress={this.logout}>
+            <Text style={page_styles.buttonText}>Drop Subject</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={page_styles.buttonContainer2}
+            onPress={this.logout}>
+            <Text style={page_styles.buttonText}>Log Out</Text>
+            </TouchableOpacity>
+                    
+
+                  
                   
                 </View>
             
@@ -118,12 +137,26 @@ const page_styles = StyleSheet.create({
         paddingVertical: 15,
         borderRadius: 30,
     },
+    buttonContainer2: {
+        backgroundColor: "rgba(0,0,0,0.6)",
+        
+        borderRadius: 30,
+        padding: 20,
+        
+    },
     buttonText: {
         textAlign: 'center',
         color: 'white',
         fontWeight: 'bold'
     }
   });
+
+const styless = StyleSheet.create({
+    body: {
+        padding: 10,
+        paddingTop: 10,
+    }
+})
 
 //make this component available to the app
 export default Manage;

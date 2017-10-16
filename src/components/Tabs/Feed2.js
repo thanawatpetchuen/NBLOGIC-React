@@ -19,7 +19,7 @@ import { firebaseRef } from '../service/Firebase';
 
 
 // create a component
-class Feed extends Component {
+class Feed2 extends Component {
     static navigationOptions = {
         // navigationBarStyle: {
         //     backgroundColor: 'rgb(245,128,51)',
@@ -27,7 +27,7 @@ class Feed extends Component {
         // title: 'Feed',
         header: null,
         // headerLeft: null,
-        tabBarLabel: 'Feed',
+        tabBarLabel: 'Feed2',
 
         gesturesEnabled: false,
         
@@ -106,9 +106,9 @@ class Feed extends Component {
                 <View style={styles.body}>
                 <StatusBar barStyle="dark-content"></StatusBar>
                   <View style={page_styles.email_container}>
-                    <Text> Hello this is my feed </Text>
-                    <Text> {this.state.cuser.Name} </Text>
-                    <Text> {this.state.cuser.email} </Text>
+                    <Text> This is Official feed </Text>
+                    
+                    
                     
                   </View>
                  
@@ -164,4 +164,4 @@ const statusBarConfig = {
   
 
 //make this component available to the app
-export default Feed;
+export default Feed2;

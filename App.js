@@ -13,6 +13,7 @@ import { StackNavigator, TabNavigator, Navigation } from 'react-navigation';
 import Login from './src/components/Login/Login';
 import New from './src/components/Login/New';
 import Feed from './src/components/Tabs/Feed';
+import Feed2 from './src/components/Tabs/Feed2';
 import Profile from './src/components/Tabs/Profile';
 import Manage from './src/components/Tabs/Manage';
 import AboutMe from './src/components/Screens/AboutMe';
@@ -20,6 +21,7 @@ import AboutMe from './src/components/Screens/AboutMe';
 
 const MainScreenNavigator = TabNavigator({
   Feed: {screen: Feed},
+  Feed2: {screen: Feed2},
   Profile: {screen: Profile},
   Manage: {screen: Manage}
 }, {
@@ -93,7 +95,7 @@ export class App extends Component {
   render() {
     var {navigate} = this.props.navigation;
     return (
-          <View>
+          <View style="styles.container">
           { this.state.page }
           </View>
         
@@ -101,3 +103,10 @@ export class App extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(0,0,0,1)',
+   
+      
+  }
+})
