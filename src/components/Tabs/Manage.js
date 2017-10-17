@@ -8,21 +8,25 @@ import { View,
          AlertIOS, 
          Image,
          Button,
-         TouchableOpacity
+         Alert,
+         TouchableOpacity,
+         StatusBar
           } from 'react-native';
+
+import SettingsList from 'react-native-settings-list';
 
 // import Button from '../service/button';
 import styles from '../../styles/common-styles.js';
 import { StackNavigator } from 'react-navigation';
 import { firebaseRef } from '../service/Firebase';
-
-
 // create a component
 class Manage extends Component {
     static navigationOptions = {
         title: 'Manage',
         header: null,
         tabBarLabel: 'Manage',
+        gesturesEnabled: false,
+        swipeEnabled: false,
         tabBarIcon: () => (
             <Icon style={page_styles.logo} name='cog' type="entypo" color='white'></Icon>
         ),
@@ -36,6 +40,7 @@ class Manage extends Component {
         }
 
         this.logout = this.logout.bind(this);
+        this.changePage = this.changePage.bind(this);
        
     };   
 
@@ -59,6 +64,10 @@ class Manage extends Component {
           });
         
     }
+
+    changePage = (page) => {
+        this.props.navigation.navigate(`${page}`);
+    }
     
     
 
@@ -66,49 +75,58 @@ class Manage extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
+        var bgColor = '#DCE3F4';
+  return (
+
+    <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+        <View style={{borderBottomWidth:1, backgroundColor:'rgba(245,128,51,0.7)',borderColor:'#c8c7cc'}}>
+        <StatusBar barStyle="light-content"></StatusBar>
+        <Text style={{alignSelf:'center',marginTop:30,marginBottom:10,fontWeight:'bold',fontSize:16, color: 'white'}}>Manage</Text>
+    </View>
+      <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+        <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
+          <SettingsList.Header headerStyle={{marginTop:15}}/>
+          
+          <SettingsList.Item
             
-            <View style={styles.body}>
+            title='Register'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => Alert.alert('Route to Wifi Page')}
+          />
+          <SettingsList.Item
             
-                <View style={styless.body}>
-                  <View style={page_styles.email_container}>
-                    <Text>Manage</Text>
-                    </View>
+            title='Add Subject'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => Alert.alert('Route to Blutooth Page')}
+          />
+          <SettingsList.Item
             
-            <TouchableOpacity style={page_styles.buttonContainer2}
-            onPress={this.logout}>
-            <Text style={page_styles.buttonText}>Register</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={page_styles.buttonContainer2}
-            onPress={this.logout}>
-            <Text style={page_styles.buttonText}>Add Subject</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={page_styles.buttonContainer2}
-            onPress={this.logout}>
-            <Text style={page_styles.buttonText}>Change Subject</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={page_styles.buttonContainer2}
-            onPress={this.logout}>
-            <Text style={page_styles.buttonText}>Drop Subject</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={page_styles.buttonContainer2}
-            onPress={this.logout}>
-            <Text style={page_styles.buttonText}>Log Out</Text>
-            </TouchableOpacity>
-                    
-
-                  
-                  
-                </View>
+            title='Change Subject'
+            onPress={() => Alert.alert('Route To Cellular Page')}
+          />
+          <SettingsList.Item
             
-            </View>
-          </View>
-    );
+            title='Drop Subject'
+            titleInfo='Off'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => Alert.alert('Route To Hotspot Page')}
+          />
+          <SettingsList.Header headerStyle={{marginTop:15}}/>
+          <SettingsList.Item
+            
+            title='Notifications'
+            onPress={() => Alert.alert('Route To Notifications Page')}
+          />
+          <SettingsList.Item
+            icon={<Icon style={ { padding:5, paddingTop: 10 } } name='log-out' type="entypo" color='black'></Icon>}
+            title='Log Out'
+            onPress={ this.logout }
+          />
+          
+        </SettingsList>
+      </View>
+    </View>
+  );
     }
 }
 

@@ -1,25 +1,26 @@
-//import liraries
 import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  View,
+  Alert,
+  Image,
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar
+} from 'react-native';
+
+import { Card, Text, Button } from 'react-native-elements'
 import { Icon } from 'react-native-elements';
-import { View, 
-         Text, 
-         StyleSheet, 
-         AsyncStorage, 
-         AlertIOS, 
-         Image, 
-         TouchableOpacity,
-         StatusBar,
-          } from 'react-native';
+// import Icon from 'react-native-vector-icons/MaterialIcons'
 
-// import Button from '../service/button';
-import styles from '../../styles/common-styles.js';
-import NavigationBar from 'react-native-navbar';
-import { firebaseRef } from '../service/Firebase';
+const { width, height } = Dimensions.get("window");
 
+import posts from './sample_posts'
 
-
-// create a component
 class Feed2 extends Component {
+
     static navigationOptions = {
         // navigationBarStyle: {
         //     backgroundColor: 'rgb(245,128,51)',
@@ -27,8 +28,8 @@ class Feed2 extends Component {
         // title: 'Feed',
         header: null,
         // headerLeft: null,
-        tabBarLabel: 'Feed2',
-
+        tabBarLabel: 'O-Feed',
+        swipeEnabled: false,
         gesturesEnabled: false,
         
         tabBarIcon: () => (
@@ -36,132 +37,77 @@ class Feed2 extends Component {
         ),
         
     };
-    constructor(props) {
-        super(props)
-        this.state = {
-            loading: false,
-            cuser: ''
-        }
-        // var userId = firebaseRef.auth().currentUser.uid;
-        // var userRef = firebaseRef.database().ref("users/"+userId);
-        // userRef.on("value", (data) => {
-        //     this.setState({
-        //         cuser: data.val()
-        //     })
-        // });
-
-        
-        
-    };   
-
-    componentWillMount(){
-        var userId = firebaseRef.auth().currentUser.uid;
-        var userRef = firebaseRef.database().ref("users/"+userId);
-
-        userRef.on("value", (data) => {
-            this.setState({
-                cuser: data.val()
-            })
-        });
-
-        // AsyncStorage.getItem('user_detail').catch((error) => {
-        //     console.log(error)
-        // }).then((value) => {
-        //     let user_state = JSON.parse(value);
-        //     this.setState({
-        //         cuser: user_state
-        //     })
-           
-        // });
-
-        
-      
-    }
-
-    // detail(){
-    //     console.log("this state status"+ this.state.user_state.status)
-    //     if(this.state.user_state.status == true){
-    //         AsyncStorage.getItem('user_detail').catch((error) => {
-    //             console.log(error);
-    //         }).then((value) => {
-    //             let user_data = JSON.parse(value);
-    //             this.setState({user: user_data});
-    //             return <Text style={page_styles.email_text}>Test</Text>
-                
-               
-    //         });
-    //         }
-    // }
-
-
-    render() {
-        var {navigate} = this.props.navigation;
-        return (
-            
-            <View style={styles.container}>
-            
-            
-            <View style={styles.body}>
-            
-                <View style={styles.body}>
-                <StatusBar barStyle="dark-content"></StatusBar>
-                  <View style={page_styles.email_container}>
-                    <Text> This is Official feed </Text>
-                    
-                    
-                    
-                  </View>
-                 
-                </View>
-            
-            </View>
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <View style={{borderBottomWidth:1, backgroundColor:'rgba(245,128,51,0.7)',borderColor:'#c8c7cc'}}>
+            <StatusBar barStyle="light-content"></StatusBar>
+            <Text style={{alignSelf:'center',marginTop:30,marginBottom:10,fontWeight:'bold',fontSize:16, color: 'white'}}>Official Feed</Text>
+        </View>
+        <ScrollView style={{backgroundColor: '#e1e8ee', paddingBottom: 100}}>
+          <View style={styles.container}>
+            {
+              posts.map((post, index) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => console.log("pressed")}
+                    activeOpacity={1}
+                    key={index}>
+                    <Card
+                      title={post.title}
+                      image={{uri: post.post_uri}}
+                      containerStyle={{backgroundColor: '#bdc6cf'}}
+                      onPress={() => console.log("pressed")}>
+                      <Text style={{marginBottom: 10}}>
+                        {post.post_text}
+                      </Text>
+                      <Button
+                        icon={{name: 'eye', type: 'font-awesome', color:'white'}}
+                        backgroundColor={'rgba(245,128,51,0.7)'}
+                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                        title='Explore'
+                        onPress={() => console.log("pressed")}/>
+                    </Card>
+                  </TouchableOpacity>
+                )
+              })
+            }
           </View>
+        </ScrollView>
+      </View>
     );
-    }
+  }
 }
 
-// define your styles
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         backgroundColor: '#737373',
-//     },
-// });
-
-const page_styles = StyleSheet.create({
-    email_container: {
-      padding: 20
-    },
-    email_text: {
-      fontSize: 18
-    },
-    buttonContainer: {
-        backgroundColor: "rgba(0,0,0,0.6)",
-        paddingVertical: 15,
-        borderRadius: 30,
-    },
-    buttonText: {
-        textAlign: 'center',
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    titleConfig: {
-        tintColor: 'rgb(245,128,51)',
-    }
-  });
-
-const titleConfig = {
-    title: 'Feed',
-    backgroundColor: 'rgb(245,128,51)',
-    tintColor: 'rgb(245,128,51)',
-};
-
-const statusBarConfig = {
-    backgroundColor: 'rgb(245,128,51)',
+const styles = {
+  user: {
+    flexDirection: 'row',
+    marginBottom: 6
+  },
+  image: {
+    width: 30,
+    height: 30,
+    marginRight: 10
+  },
+  name: {
+    fontSize: 16,
+    marginTop: 5
+  },
+  header: {
+    flex: 0.1,
+    backgroundColor: 'rgba(245,128,51,0.7)',
+    width: width,
+    height: 64
+  },
+  headerTitle: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    paddingTop: 20,
+    fontSize: 18
+  }
 }
-  
 
-//make this component available to the app
-export default Feed2;
+export default Feed2
