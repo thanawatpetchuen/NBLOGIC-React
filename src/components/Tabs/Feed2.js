@@ -7,22 +7,59 @@ import {
   Image,
   Dimensions,
   ScrollView,
+<<<<<<< HEAD
   TouchableOpacity
 } from 'react-native';
 
 import { Card, Text, Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+=======
+  TouchableOpacity,
+  StatusBar
+} from 'react-native';
+
+import { Card, Text, Button } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/MaterialIcons'
+>>>>>>> d43696e97a142804a150bea9ce0b202fd9e2cb71
 
 const { width, height } = Dimensions.get("window");
 
 import posts from './sample_posts'
 
+<<<<<<< HEAD
 class FeedView extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Social Feed</Text>
+=======
+class Feed2 extends Component {
+
+    static navigationOptions = {
+        // navigationBarStyle: {
+        //     backgroundColor: 'rgb(245,128,51)',
+        // },
+        // title: 'Feed',
+        header: null,
+        // headerLeft: null,
+        tabBarLabel: 'O-Feed',
+        swipeEnabled: false,
+        gesturesEnabled: false,
+        
+        tabBarIcon: () => (
+            <Icon name='home' color='white'></Icon>
+        ),
+        
+    };
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <View style={{borderBottomWidth:1, backgroundColor:'rgba(245,128,51,0.7)',borderColor:'#c8c7cc'}}>
+            <StatusBar barStyle="light-content"></StatusBar>
+            <Text style={{alignSelf:'center',marginTop:30,marginBottom:10,fontWeight:'bold',fontSize:16, color: 'white'}}>Official Feed</Text>
+>>>>>>> d43696e97a142804a150bea9ce0b202fd9e2cb71
         </View>
         <ScrollView style={{backgroundColor: '#e1e8ee', paddingBottom: 100}}>
           <View style={styles.container}>
@@ -43,7 +80,11 @@ class FeedView extends Component {
                       </Text>
                       <Button
                         icon={{name: 'eye', type: 'font-awesome', color:'white'}}
+<<<<<<< HEAD
                         backgroundColor={'#6296f9'}
+=======
+                        backgroundColor={'rgba(245,128,51,0.7)'}
+>>>>>>> d43696e97a142804a150bea9ce0b202fd9e2cb71
                         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         title='Explore'
                         onPress={() => console.log("pressed")}/>
@@ -75,7 +116,11 @@ const styles = {
   },
   header: {
     flex: 0.1,
+<<<<<<< HEAD
     backgroundColor: 'white',
+=======
+    backgroundColor: 'rgba(245,128,51,0.7)',
+>>>>>>> d43696e97a142804a150bea9ce0b202fd9e2cb71
     width: width,
     height: 64
   },
@@ -83,11 +128,19 @@ const styles = {
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'center',
+<<<<<<< HEAD
     color: '#6296f9',
+=======
+    color: 'white',
+>>>>>>> d43696e97a142804a150bea9ce0b202fd9e2cb71
     fontWeight: 'bold',
     paddingTop: 20,
     fontSize: 18
   }
 }
 
+<<<<<<< HEAD
 export default FeedView
+=======
+export default Feed2
+>>>>>>> d43696e97a142804a150bea9ce0b202fd9e2cb71

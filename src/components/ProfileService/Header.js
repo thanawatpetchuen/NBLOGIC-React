@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, Image, AsyncStorage, StatusBar } from 'react-native';
 import { firebaseRef } from '../service/Firebase';
 // create a component
 class ProfilePage extends Component {
@@ -33,8 +33,11 @@ class ProfilePage extends Component {
     }
     render() {
         return (
+            
             <Image style={styles.headerBackground} source={{uri: this.state.user.urlCover}}>
+                <StatusBar barStyle="light-content"/>
                 <View style={styles.header}>
+                    
                     <View style={styles.profilepicWrap}>
                         <Image style={styles.profilepic} source={{uri: this.state.user.urlProfileImage}}></Image>
                     </View>
