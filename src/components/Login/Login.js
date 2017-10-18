@@ -12,6 +12,7 @@ import {
     TextInput,
     TouchableOpacity,
     AlertIOS,
+    Alert,
     AsyncStorage
 } from 'react-native';
 import { LoginForm } from './LoginForm';
@@ -69,7 +70,7 @@ export default class Login extends Component {
         .catch((error) => {
             //Login was not successful, let's create a new account
             this.setState({ error: error, loading: false});
-            AlertIOS.alert(
+            Alert.alert(
                 `${this.state.error}`
             );
         });
