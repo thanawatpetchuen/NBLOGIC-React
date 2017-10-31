@@ -7,6 +7,7 @@ import {
   Keyboard,
   ScrollView,
   AsyncStorage,
+  Platform
 } from 'react-native';
 
 import { StackNavigator, TabNavigator, Navigation } from 'react-navigation';
@@ -27,7 +28,7 @@ const MainScreenNavigator = TabNavigator({
 }, {
   tabBarPosition: 'bottom',
   swipeEnabled: true,
-  tabBarOptions: {
+  tabBarOptions: Platform.OS === 'ios' ? {
     activeTintColor: 'white',
     activeBackgroundColor: 'rgb(245,128,51)',
     inactiveTintColor: 'black',
@@ -36,7 +37,18 @@ const MainScreenNavigator = TabNavigator({
       fontSize: 16,
       padding: 0,
     }
+  } : {
+    activeTintColor: 'white',
+    inactiveTintColor: 'black',
+    labelStyle: {
+      fontSize: 16,
+      padding: 0,
+    },
+    style: {
+      backgroundColor: 'rgb(245,128,51)'
+    }
   }
+  
 });
 
 const Navigations = StackNavigator({

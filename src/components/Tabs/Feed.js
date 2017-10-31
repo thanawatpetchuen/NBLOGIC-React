@@ -8,7 +8,8 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Platform
 } from 'react-native';
 
 import { Card, Text, Button } from 'react-native-elements'
@@ -27,9 +28,12 @@ class Feed extends Component {
         // },
         // title: 'Feed',
         header: null,
+        // headerStyle: {
+        //   height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54
+        // },
         // headerLeft: null,
         tabBarLabel: 'Feed',
-
+      
         gesturesEnabled: false,
         swipeEnabled: false,
         tabBarIcon: () => (
@@ -40,11 +44,23 @@ class Feed extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{borderBottomWidth:1, backgroundColor:'rgba(245,128,51,0.7)',borderColor:'#c8c7cc'}}>
-                    <StatusBar barStyle="light-content"></StatusBar>
-                    <Text style={{alignSelf:'center',marginTop:30,marginBottom:10,fontWeight:'bold',fontSize:16, color: 'white'}}>Feed</Text>
-                </View>
-        <ScrollView style={{backgroundColor: '#e1e8ee', paddingBottom: 100}}>
+        <View style={{
+          borderBottomWidth: 1, 
+          backgroundColor: 'rgba(245,128,51,0.7)',
+          borderColor: '#c8c7cc'}}>
+              <StatusBar barStyle="light-content"></StatusBar>
+                <Text style={{
+                  alignSelf: 'center',
+                  marginTop: 30,
+                  marginBottom: 10,
+                  fontWeight: 'bold',
+                  fontSize: 16, 
+                  color: 'white'
+                  }}>Feed</Text>
+        </View>
+        <ScrollView style={{
+          backgroundColor: '#e1e8ee', 
+          paddingBottom: 100}}>
           <View style={styles.container}>
             {
               posts.map((post, index) => {

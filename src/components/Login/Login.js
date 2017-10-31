@@ -15,6 +15,13 @@ import {
     Alert,
     AsyncStorage
 } from 'react-native';
+
+import { connect } from 'react-redux';
+import {
+  emailChanged,
+  passwordChanged,
+  loginUser } from '../../actions';
+import { createStore } from 'redux';
 import { LoginForm } from './LoginForm';
 import { firebaseRef } from '../service/Firebase';
 import { Spinner } from '../service/Spinner'; 
